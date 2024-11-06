@@ -85,22 +85,22 @@ pub struct Args {
     #[clap(short, long, env = "MICROBIN_GC_DAYS", default_value_t = 90)]
     pub gc_days: u16,
 
-    #[clap(long, env = "MICROBIN_ENABLE_BURN_AFTER")]
+    #[clap(long, env = "MICROBIN_ENABLE_BURN_AFTER", default_value_t = true)]
     pub enable_burn_after: bool,
 
     #[clap(short, long, env = "MICROBIN_DEFAULT_BURN_AFTER", default_value_t = 0)]
     pub default_burn_after: u16,
 
-    #[clap(long, env = "MICROBIN_WIDE")]
+    #[clap(long, env = "MICROBIN_WIDE", default_value_t = true)]
     pub wide: bool,
 
-    #[clap(long, env = "MICROBIN_QR")]
+    #[clap(long, env = "MICROBIN_QR", default_value_t = true)]
     pub qr: bool,
 
-    #[clap(long, env = "MICROBIN_ETERNAL_PASTA")]
+    #[clap(long, env = "MICROBIN_ETERNAL_PASTA", default_value_t = false)]
     pub eternal_pasta: bool,
 
-    #[clap(long, env = "MICROBIN_ENABLE_READONLY")]
+    #[clap(long, env = "MICROBIN_ENABLE_READONLY", default_value_t = true)]
     pub enable_readonly: bool,
 
     #[clap(long, env = "MICROBIN_DEFAULT_EXPIRY", default_value = "24hour")]
@@ -109,28 +109,28 @@ pub struct Args {
     #[clap(long, env = "MICROBIN_DATA_DIR", default_value = "microbin_data")]
     pub data_dir: String,
 
-    #[clap(short, long, env = "MICROBIN_NO_FILE_UPLOAD")]
+    #[clap(short, long, env = "MICROBIN_NO_FILE_UPLOAD", default_value_t = false)]
     pub no_file_upload: bool,
 
     #[clap(long, env = "MICROBIN_CUSTOM_CSS")]
     pub custom_css: Option<String>,
 
-    #[clap(long, env = "MICROBIN_HASH_IDS")]
+    #[clap(long, env = "MICROBIN_HASH_IDS", default_value_t = true)]
     pub hash_ids: bool,
 
-    #[clap(long, env = "MICROBIN_LIST_SERVER")]
+    #[clap(long, env = "MICROBIN_LIST_SERVER", default_value_t = true)]
     pub list_server: bool,
 
-    #[clap(long, env = "MICROBIN_DISABLE_TELEMETRY")]
+    #[clap(long, env = "MICROBIN_DISABLE_TELEMETRY", default_value_t = true)]
     pub disable_telemetry: bool,
 
-    #[clap(long, env = "MICROBIN_DISABLE_UPDATE_CHECKING")]
+    #[clap(long, env = "MICROBIN_DISABLE_UPDATE_CHECKING", default_value_t = true)]
     pub disable_update_checking: bool,
 
-    #[clap(long, env = "MICROBIN_ENCRYPTION_CLIENT_SIDE")]
+    #[clap(long, env = "MICROBIN_ENCRYPTION_CLIENT_SIDE", default_value_t = true)]
     pub encryption_client_side: bool,
 
-    #[clap(long, env = "MICROBIN_ENCRYPTION_SERVER_SIDE")]
+    #[clap(long, env = "MICROBIN_ENCRYPTION_SERVER_SIDE", default_value_t = true)]
     pub encryption_server_side: bool,
 
     #[clap(

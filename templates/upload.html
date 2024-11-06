@@ -31,8 +31,6 @@
   {%- endif %}
 </div>
 
-<br>
-<br>
 {% if pasta.encrypt_client %}
 <span style="margin-left: auto; margin-right: auto; display: flex;
 justify-content: center; align-items: center;">
@@ -64,8 +62,6 @@ justify-content: center; align-items: center;">
   </div>
 </span>
 {%- endif %}
-
-<br>
 
 {% if pasta.content != "" %}
 <div class="code-container">
@@ -136,8 +132,6 @@ pasta.file_embeddable() && !pasta.encrypt_client %}
   {%- endif %} {%- endif %}
 
 </div>
-
-<br>
 
 <script type="text/javascript" src="{{ args.public_path_as_str() }}/static/highlight/highlight.min.js"></script>
 <link rel="stylesheet" href="{{ args.public_path_as_str()}}/static/highlight/highlight.min.css">
@@ -272,7 +266,7 @@ pasta.file_embeddable() && !pasta.encrypt_client %}
 
     // {%- endif %}
   });
-  // {% endif  %} 
+  // {% endif  %}
 
   decryptButton.addEventListener("click", () => {
     password = passwordField.value;
@@ -282,7 +276,7 @@ pasta.file_embeddable() && !pasta.encrypt_client %}
       contentElement.innerHTML = contentDecrypted;
       // {% if pasta.extension == "auto" %}
       hljs.highlightAll();
-      // {% endif  %} 
+      // {% endif  %}
       contentElement.innerHTML = wrapStringInCodeLines(contentElement.innerHTML);
       // decryptDiv.style.display = 'none';
     }
@@ -365,6 +359,14 @@ pasta.file_embeddable() && !pasta.encrypt_client %}
 
   .code-container {
     position: relative;
+    width: 100%;
+    max-height: calc(100vh - 200px);
+    height: calc(100vh - 200px);
+    overflow: auto !important;
+    background: var(--background-alt);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
 
   .hidden {
@@ -373,10 +375,28 @@ pasta.file_embeddable() && !pasta.encrypt_client %}
 
   .small-button {
     font-size: small;
-    padding: 4px;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    padding: 4px 0.8rem;
     cursor: pointer;
+    background: var(--button-base);
+    color: var(--text-bright);
+    border: 1px solid var(--links);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .small-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+    background: var(--button-hover);
+    color: var(--background);
+  }
+
+  #decryption {
+    background: var(--background-alt);
+    border-radius: 6px;
+    padding: 1rem;
+    width: fit-content;
+    border: 1px solid var(--border);
   }
 </style>
 

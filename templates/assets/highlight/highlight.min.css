@@ -14,12 +14,12 @@ code.hljs {
 }
 
 .hljs {
-  background: #f3f3f3;
-  color: #444
+  background: #112240;
+  color: #ccd6f6;
 }
 
 .hljs-comment {
-  color: #697070
+  color: #495670;
 }
 
 .hljs-punctuation,
@@ -81,7 +81,7 @@ code.hljs {
 }
 
 .hljs-meta {
-  color: #1f7199
+  color: #6272a4
 }
 
 .hljs-meta .hljs-string {
@@ -94,4 +94,45 @@ code.hljs {
 
 .hljs-strong {
   font-weight: 700
+}
+
+.hljs-keyword {
+  color: #ff79c6;
+}
+
+.hljs-string {
+  color: #64ffda;
+}
+
+.hljs-number {
+  color: #bd93f9;
+}
+
+.hljs-built_in {
+  color: #8be9fd;
+}
+
+.hljs-function {
+  color: #50fa7b;
+}
+
+.hljs-title {
+  color: #50fa7b;
+  font-weight: bold;
+}
+
+.hljs-params {
+  color: #ffb86c;
+}
+
+.hljs-literal {
+  color: #bd93f9;
+}
+
+.hljs-type {
+  color: #8be9fd;
+}
+
+.hljs-meta {
+  color: #6272a4;
 }

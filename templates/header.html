@@ -30,7 +30,6 @@ padding-right:0.5rem; line-height: 1.5; font-size: 1.1em; padding-top: 2rem;">
     <body style=" max-width: 800px; margin: auto; padding-left:0.5rem;
     padding-right:0.5rem; padding-top: 2rem; line-height: 1.5; font-size: 1.1em; ">
         {%- endif %}
-        <br>
         {% if !args.hide_header %}
 
         <div id="nav" style="margin-bottom: 1rem;">
@@ -45,15 +44,14 @@ padding-right:0.5rem; line-height: 1.5; font-size: 1.1em; padding-top: 2rem;">
             </b>
 
             <a href="{{ args.public_path_as_str() }}/" style="margin-right: 0.5rem;
-            margin-left: 0.5rem">New</a>
+            margin-left: 0.5rem">新建</a>
 
             {% if !args.no_listing %}
-            <a href="{{ args.public_path_as_str() }}/list" style="margin-right: 0.5rem; margin-left: 0.5rem">List</a>
+            <a href="{{ args.public_path_as_str() }}/list" style="margin-right: 0.5rem; margin-left: 0.5rem">列表</a>
             {%- endif %}
 
             <a href="{{ args.public_path_as_str() }}/guide" style="margin-right: 0.5rem;
-            margin-left: 0.5rem">Guide</a>
-
+            margin-left: 0.5rem">指南</a>
 
         </div>
 
