@@ -72,13 +72,16 @@ pub fn expiration_to_timestamp(expiration: &str, timenow: i64) -> i64 {
 
 /// receives a file through http Post on url /upload/a-b-c with a, b and c
 /// different animals. The client sends the post in response to a form.
-// TODO: form field order might need to be changed. In my testing the attachment 
-// data is nestled between password encryption key etc <21-10-24, dvdsk> 
+// TODO: form field order might need to be changed. In my testing the attachment
+// data is nestled between password encryption key etc <21-10-24, dvdsk>
 pub async fn create(
     data: web::Data<AppState>,
     mut payload: Multipart,
 ) -> Result<HttpResponse, Error> {
-    let mut pastas = data.pastas.lock().unwrap();
+    let mut pastas = data.pastas.lock().map_err(|e| {
+        log::error!("Failed to acquire mutex lock: {}", e);
+        ErrorBadRequest("Internal server error")
+    })?;
 
     let timenow: i64 = match SystemTime::now().duration_since(UNIX_EPOCH) {
         Ok(n) => n.as_secs(),
@@ -178,10 +181,10 @@ pub async fn create(
                         // give an extra read because the user will be
                         // redirected to the pasta page automatically
                         "1" => 2,
-                        "10" => 10,
-                        "100" => 100,
-                        "1000" => 1000,
-                        "10000" => 10000,
+                        "10" => 11,
+                        "100" => 101,
+                        "1000" => 1001,
+                        "10000" => 10001,
                         "0" => 0,
                         _ => {
                             log::error!("{}", "Unexpected burn after value!");
@@ -276,7 +279,7 @@ pub async fn create(
     if ARGS.readonly && ARGS.uploader_password.is_some() {
         if uploader_password != ARGS.uploader_password.as_ref().unwrap().to_owned() {
             return Ok(HttpResponse::Found()
-                .append_header(("Location", "/incorrect"))
+                .append_header(("pasta_url", "/incorrect"))
                 .finish());
         }
     }

@@ -43,7 +43,7 @@
                         {%- endif %} 1 周
                     </option>
                 </optgroup>
-                {% if !args.eternal_pasta %}
+                {% if args.eternal_pasta %}
                 {% if args.default_expiry == "never" %}
                 <option selected value="never">
                     {%- else %}
@@ -184,7 +184,8 @@
     <div>
         {% if !args.no_file_upload %}
         <div id="file-select">
-            <label for="file" id="attach-file-button-label"><a role="button" id="attach-file-button">选择或拖放文件附件</a></label>
+            <label for="file" id="attach-file-button-label"><a role="button"
+                    id="attach-file-button">选择或拖放文件附件</a></label>
 
             <input type="file" id="file" name="file" />
         </div>
@@ -296,7 +297,7 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200 || xhr.status === 302) {
-                    window.location.href = xhr.responseURL;
+                    window.location.href = xhr.getResponseHeader('pasta_url');
                 } else {
                     console.log('Request failed with status:', xhr.status);
                 }
@@ -397,7 +398,12 @@
         evt.preventDefault();
     };
     // {%- endif %}
-
+    document.onpaste = function (event) {
+        const data = (event.clipboardData || event.originalEvent.clipboardData);
+        if (data.files.length === 0) return;
+        attachFileButton.textContent = "Attached: " + data.files[0].name;
+        hiddenFileButton.files = data.files;
+    }
 </script>
 
 <style>
@@ -413,28 +419,6 @@
         margin-bottom: 1.5rem;
         max-width: 1200px;
     }
-
-
-    /* select option {
-        padding: 10px;
-        background-color: white;
-    }
-
-    select option:hover {
-        background-color: #f0f7ff;
-    }
-
-    select optgroup {
-        font-weight: 600;
-        color: #2975D2;
-        background-color: #f8f9fa;
-    }
-
-    select optgroup option {
-        padding-left: 15px;
-        font-weight: normal;
-        color: #333;
-    } */
 
     #attach-file-button-label {
         cursor: pointer;
@@ -455,7 +439,6 @@
     #file-select {
         float: left;
     }
-
 </style>
 
 {% include "footer.html" %}
